@@ -4,29 +4,28 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import { fetchDecksData } from "../utils/api";
 
 export default function HomeScreen({ navigation }) {
-  const [name, setName] = useState("Default");
+  const [deckList, setDeckList] = useState([]);
 
-  async function loadDecksName() {
+  async function loadDecksData() {
     try {
-      const name = await fetchDecksData();
-      console.log(name);
+      const decksData = await fetchDecksData();
 
-      if (name === null) return;
+      if (decksData === null) return;
 
-      setName(name);
+      setDeckList(decksData);
     } catch (e) {
-      console.error("Failed to load name.");
+      console.error("Failed to load decks!");
     }
   }
 
   useEffect(() => {
-    loadDecksName();
+    loadDecksData();
   }, []);
 
   return (
     <View style={styles.item}>
       <Text>Deck List</Text>
-      <Text>{name}</Text>
+      <Text>{deckList}</Text>
       <Button title="Open Deck" onPress={() => navigation.navigate("Deck")} />
     </View>
   );
