@@ -2,8 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const DECKS_STORAGE_KEY = "MobileFlashCards:decks";
 
-function setDummyData() {
-  let dummyData = {
+function setDecksData() {
+  let decks = {
     React: {
       title: "React",
       questions: [
@@ -28,9 +28,9 @@ function setDummyData() {
       ],
     },
   };
-  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(dummyData));
+  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 
-  return dummyData;
+  return decks;
 }
 
-export default setDummyData;
+export default setDecksData;
