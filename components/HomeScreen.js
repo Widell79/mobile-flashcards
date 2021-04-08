@@ -1,0 +1,19 @@
+import * as React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+
+export default function HomeScreen({ navigation }) {
+  return (
+    <View style={styles.item}>
+      <Text>Deck List</Text>
+      <Button title="Open Deck" onPress={() => navigation.navigate("Deck")} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  item: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

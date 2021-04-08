@@ -1,30 +1,10 @@
-// In App.js in a new project
-
 import * as React from "react";
-import { View, Text, Button } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
+import HomeScreen from "./components/HomeScreen";
+import DeckView from "./components/DeckView";
 
 const Stack = createStackNavigator();
 
@@ -45,7 +25,7 @@ function App() {
           component={HomeScreen}
           options={{ title: "All Decks" }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Deck" component={DeckView} />
       </Stack.Navigator>
     </NavigationContainer>
   );
