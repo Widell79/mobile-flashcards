@@ -5,6 +5,7 @@ export const DECKS_STORAGE_KEY = "MobileFlashCards:decks";
 function setDecksData() {
   let decks = {
     React: {
+      id: "8xf0y6ziyjabvozdd253nd",
       title: "React",
       questions: [
         {
@@ -18,6 +19,7 @@ function setDecksData() {
       ],
     },
     JavaScript: {
+      id: "6ni6ok3ym7mf1p33lnez",
       title: "JavaScript",
       questions: [
         {
