@@ -7,7 +7,7 @@ function setDecksData() {
     React: {
       id: "8xf0y6ziyjabvozdd253nd",
       title: "React",
-      questions: [
+      cards: [
         {
           question: "What is React?",
           answer: "A library for managing user interfaces",
@@ -21,7 +21,7 @@ function setDecksData() {
     JavaScript: {
       id: "6ni6ok3ym7mf1p33lnez",
       title: "JavaScript",
-      questions: [
+      cards: [
         {
           question: "What is a closure?",
           answer:
@@ -30,6 +30,7 @@ function setDecksData() {
       ],
     },
   };
+
   AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 
   return decks;
