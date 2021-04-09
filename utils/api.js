@@ -2,7 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DECKS_STORAGE_KEY } from "./_decks";
 
 export function fetchDecksData() {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY);
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((decks) => ({
+    decks,
+  }));
 }
 
 // export function submitEntry({ entry, key }) {
