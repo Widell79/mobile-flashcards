@@ -3,13 +3,16 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
+import setDecksData from "../utils/_decks";
 import { handleInitialData } from "../slices/shared/shared";
 import { selectDecks } from "../slices/decks/decksSlice";
 import { log } from "react-native-reanimated";
 
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
+
   useEffect(() => {
+    setDecksData();
     dispatch(handleInitialData());
   }, []);
 
