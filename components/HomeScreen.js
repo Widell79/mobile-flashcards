@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Text, Button, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -32,8 +38,18 @@ export default function HomeScreen({ navigation }) {
         data={decksListInfo}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <Text style={styles.header}>{item.title}</Text>
-            <Text style={styles.text}>{item.cards.length} Cards</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Deck", {
+                  id: item.id,
+                  title: item.title,
+                  numOfCards: item.cards.length,
+                });
+              }}
+            >
+              <Text style={styles.header}>{item.title}</Text>
+              <Text style={styles.text}>{item.cards.length} Cards</Text>
+            </TouchableOpacity>
           </View>
         )}
       />

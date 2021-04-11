@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "./components/HomeScreen";
 import DeckView from "./components/DeckView";
+import AddCard from "./components/AddCard";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ function App() {
             options={{ title: "All Decks" }}
           />
           <Stack.Screen name="Deck" component={DeckView} />
+          <Stack.Screen name="AddCard" component={AddCard} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
