@@ -7,6 +7,8 @@ import setDecksData from "../utils/_decks";
 import { handleInitialData } from "../slices/shared/shared";
 import { selectDecks } from "../slices/decks/decksSlice";
 
+import { mapDecksToList } from "../utils/helpers";
+
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
 
@@ -17,27 +19,23 @@ export default function HomeScreen({ navigation }) {
 
   const decksInfo = useSelector(selectDecks);
 
-  const decksList = Object.entries(decksInfo);
-  const decksListInfo = decksList.map((data) => {
-    return data[1];
+  const decksList = mapDecksToList(decksInfo);
+
+  const decksListInfo = decksList.values.map((data) => {
+    return data;
   });
 
   return (
-    // <View style={styles.item}>
-    //   {decksListInfo.map((deck) => {
-    //     const title = deck.title;
-    //     const id = deck.id;
-
-    //     return <Text key={id}>{title}</Text>;
-    //   })}
-
-    //   <Button title="Open Deck" onPress={() => navigation.navigate("Deck")} />
-    // </View>
     <View style={styles.container}>
       <FlatList
         keyExtractor={(item) => item.id}
         data={decksListInfo}
-        renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text style={styles.header}>{item.title}</Text>
+            <Text style={styles.text}>{item.cards.length} Cards</Text>
+          </View>
+        )}
       />
     </View>
   );
@@ -55,7 +53,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 30,
     backgroundColor: "#1ea6f4",
+  },
+  header: {
     fontSize: 24,
+    textAlign: "center",
+  },
+  text: {
+    fontSize: 18,
     textAlign: "center",
   },
 });
