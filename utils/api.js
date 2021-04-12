@@ -7,14 +7,9 @@ export function fetchDecksData() {
   }));
 }
 
-// export function submitEntry({ entry, key }) {
-//   return AsyncStorage.mergeItem(
-//     CALENDAR_STORAGE_KEY,
-//     JSON.stringify({
-//       [key]: entry,
-//     })
-//   );
-// }
+export function submitCard({ id, question, answer }) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({ id }));
+}
 
 // export function removeEntry(key) {
 //   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then((results) => {

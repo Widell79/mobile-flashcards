@@ -12,7 +12,11 @@ export default function DeckView({ route, navigation }) {
       <View style={styles.btn}>
         <Button
           title="Add Card"
-          onPress={() => navigation.navigate("AddCard")}
+          onPress={() =>
+            navigation.navigate("AddCard", {
+              id: id,
+            })
+          }
         />
       </View>
       <View style={styles.btn}>
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 30,
     backgroundColor: "#1ea6f4",
+    borderRadius: 5,
   },
   header: {
     fontSize: 24,

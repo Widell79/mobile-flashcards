@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 30,
     backgroundColor: "#1ea6f4",
+    borderRadius: 5,
   },
   header: {
     fontSize: 24,

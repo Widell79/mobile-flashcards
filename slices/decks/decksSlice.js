@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//import { saveQuestionAnswer, saveQuestion } from "../../utils/api";
+import { submitCard } from "../../utils/api";
 
 export const decksSlice = createSlice({
   name: "decks",
@@ -16,29 +16,35 @@ export const decksSlice = createSlice({
         ...action.payload,
       };
     },
+    add_card: (state, action) => {
+      const { id, card } = action.payload;
+      return {
+        ...state,
+      };
+    },
   },
 });
 
-export const { receive_decks } = decksSlice.actions;
+export const { receive_decks, add_card } = decksSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 
-// export function saveAnswer(obj) {
-//   return async (dispatch) => {
-//     try {
-//       await saveQuestionAnswer(obj);
+export function saveCard(id, card) {
+  console.log(id, card);
+  return async (dispatch) => {
+    try {
+      await submitCard(id, card);
 
-//       dispatch(save_answer(obj));
-//       dispatch(add_answer_user(obj));
-//     } catch (err) {
-//       console.warn("Error in saveAnswer: ", err);
-//       alert("There was an error saving your answer. Please try again.");
-//     }
-//   };
-// }
+      dispatch(add_card(id, card));
+    } catch (err) {
+      console.warn("Error in saveCard: ", err);
+      alert("There was an error saving your card. Please try again.");
+    }
+  };
+}
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
