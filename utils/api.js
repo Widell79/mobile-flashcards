@@ -8,7 +8,10 @@ export function fetchDecksData() {
 }
 
 export function submitCard({ id, question, answer }) {
-  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({ id }));
+  return AsyncStorage.mergeItem(
+    DECKS_STORAGE_KEY,
+    JSON.stringify({ id, question })
+  );
 }
 
 // export function removeEntry(key) {

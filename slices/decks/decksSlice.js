@@ -17,9 +17,17 @@ export const decksSlice = createSlice({
       };
     },
     add_card: (state, action) => {
-      const { id, card } = action.payload;
+      const { card, title } = action.payload;
+
       return {
         ...state,
+        decks: {
+          ...state.decks,
+          [title]: {
+            title: title,
+            cards: [...state.decks[title].cards, card],
+          },
+        },
       };
     },
   },
@@ -32,13 +40,12 @@ export const { receive_decks, add_card } = decksSlice.actions;
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 
-export function saveCard(id, card) {
-  console.log(id, card);
+export function saveCard(card, title) {
+  console.log(card, title);
   return async (dispatch) => {
     try {
-      await submitCard(id, card);
-
-      dispatch(add_card(id, card));
+      //await submitCard(id, card);
+      dispatch(add_card(card, title));
     } catch (err) {
       console.warn("Error in saveCard: ", err);
       alert("There was an error saving your card. Please try again.");

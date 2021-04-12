@@ -14,7 +14,7 @@ export default function DeckView({ route, navigation }) {
           title="Add Card"
           onPress={() =>
             navigation.navigate("AddCard", {
-              id: id,
+              title: title,
             })
           }
         />

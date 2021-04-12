@@ -9,16 +9,16 @@ export default function AddCard({ route, navigation }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
-  const { id } = route.params;
+  const { title } = route.params;
+
+  let card = {
+    question: question,
+    answer: answer,
+  };
   const dispatch = useDispatch();
 
   const submitHandler = () => {
-    let card = {
-      question: question,
-      answer: answer,
-    };
-
-    dispatch(saveCard(id, card));
+    dispatch(saveCard(card, title));
 
     // setQuestion(() => "");
     // setAnswer(() => "");
@@ -26,7 +26,6 @@ export default function AddCard({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>{id}</Text>
       <Text>Enter a question:</Text>
       <TextInput
         style={styles.input}
