@@ -1,12 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import setInitialDecks, { DECKS_STORAGE_KEY } from "./_decks";
 
-//let decks = setInitialDecks();
-
 export function fetchDecksData() {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((decks) => ({
-    decks,
-  }));
+  if (AsyncStorage.getItem(DECKS_STORAGE_KEY) !== null) {
+    return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((decks) => ({
+      decks,
+    }));
+  } else {
+    setInitialDecks();
+  }
 }
 
 export function submitCard(title, card) {

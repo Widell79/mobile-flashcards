@@ -9,7 +9,6 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import setInitialDecks from "../utils/_decks";
 import { handleInitialData } from "../slices/shared/shared";
 import { selectDecks } from "../slices/decks/decksSlice";
 
@@ -19,7 +18,6 @@ export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setInitialDecks();
     dispatch(handleInitialData());
   }, []);
 

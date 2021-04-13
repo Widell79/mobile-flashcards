@@ -41,7 +41,7 @@ export const { receive_decks, add_card } = decksSlice.actions;
 export function saveCard(card, title) {
   return async (dispatch) => {
     try {
-      await submitCard(title, card);
+      //await submitCard(title, card);
       dispatch(add_card({ card, title }));
     } catch (err) {
       console.warn("Error in saveCard: ", err);
