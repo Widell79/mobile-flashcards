@@ -34,14 +34,13 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.title}
         data={decksListInfo}
         renderItem={({ item }) => (
           <View style={styles.item}>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Deck", {
-                  id: item.id,
                   title: item.title,
                   numOfCards: item.cards.length,
                 });

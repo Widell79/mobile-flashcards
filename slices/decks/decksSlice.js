@@ -18,14 +18,17 @@ export const decksSlice = createSlice({
     },
     add_card: (state, action) => {
       const { card, title } = action.payload;
+      console.log(card, title);
 
       return {
         ...state,
-        decks: {
-          ...state.decks,
-          [title]: {
-            title: title,
-            cards: [...state.decks[title].cards, card],
+
+        ...state.decks,
+        [title]: {
+          title: title,
+          cards: {
+            ...state[title].cards,
+            card,
           },
         },
       };
@@ -41,11 +44,10 @@ export const { receive_decks, add_card } = decksSlice.actions;
 // code can then be executed and other actions can be dispatched
 
 export function saveCard(card, title) {
-  console.log(card, title);
   return async (dispatch) => {
     try {
       //await submitCard(id, card);
-      dispatch(add_card(card, title));
+      dispatch(add_card({ card, title }));
     } catch (err) {
       console.warn("Error in saveCard: ", err);
       alert("There was an error saving your card. Please try again.");

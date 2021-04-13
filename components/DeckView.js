@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 export default function DeckView({ route, navigation }) {
-  const { id, title, numOfCards } = route.params;
+  const { title, numOfCards } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.item}>

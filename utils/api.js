@@ -14,6 +14,22 @@ export function submitCard({ id, question, answer }) {
   );
 }
 
+// export function addCardToDeck({ title, card }) {
+//   getDecks()
+//     .then((decks) => {
+//       return {
+//         ...decks,
+//         [title]: {
+//           questions: [...decks.questions].concat(card)
+//         }
+//       }
+//     }).then(res => {
+//       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(res))
+//     }).catch(err => {
+//       console.log('error in addCardToDeck', err)
+//     })
+// }
+
 // export function removeEntry(key) {
 //   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then((results) => {
 //     const data = JSON.parse(results);
