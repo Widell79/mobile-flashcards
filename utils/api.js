@@ -7,7 +7,7 @@ export function fetchDecksData() {
   }));
 }
 
-export function submitCard({ card, title }) {
+export function submitCard(card, title) {
   console.log(card);
   return AsyncStorage.mergeItem(
     DECKS_STORAGE_KEY,

@@ -20,8 +20,8 @@ export default function AddCard({ route, navigation }) {
   const submitHandler = () => {
     dispatch(saveCard(card, title));
 
-    // setQuestion(() => "");
-    // setAnswer(() => "");
+    setQuestion("");
+    setAnswer("");
   };
 
   return (
