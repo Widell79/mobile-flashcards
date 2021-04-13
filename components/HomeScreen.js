@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setInitialDecks();
+    //setInitialDecks();
     dispatch(handleInitialData());
   }, []);
 
