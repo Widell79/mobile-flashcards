@@ -18,8 +18,6 @@ export const decksSlice = createSlice({
     },
     add_card: (state, action) => {
       const { card, title } = action.payload;
-      console.log(card, title);
-
       return {
         ...state,
 

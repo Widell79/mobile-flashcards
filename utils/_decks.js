@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const DECKS_STORAGE_KEY = "MobileFlashCards:decks";
 
-function setDecksData() {
+function setInitialDecks() {
   let decks = {
     React: {
       title: "React",
@@ -34,4 +34,4 @@ function setDecksData() {
   return decks;
 }
 
-export default setDecksData;
+export default setInitialDecks;
