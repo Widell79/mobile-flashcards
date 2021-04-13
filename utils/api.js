@@ -7,7 +7,8 @@ export function fetchDecksData() {
       decks,
     }));
   } else {
-    setInitialDecks();
+    //setInitialDecks();
+    console.log("hi");
   }
 }
 
