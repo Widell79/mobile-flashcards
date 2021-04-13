@@ -26,10 +26,7 @@ export const decksSlice = createSlice({
         ...state.decks,
         [title]: {
           title: title,
-          cards: {
-            ...state[title].cards,
-            card,
-          },
+          cards: [...state[title].cards, card],
         },
       };
     },
@@ -46,7 +43,7 @@ export const { receive_decks, add_card } = decksSlice.actions;
 export function saveCard(card, title) {
   return async (dispatch) => {
     try {
-      //await submitCard(id, card);
+      await submitCard(card, title);
       dispatch(add_card({ card, title }));
     } catch (err) {
       console.warn("Error in saveCard: ", err);

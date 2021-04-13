@@ -7,28 +7,13 @@ export function fetchDecksData() {
   }));
 }
 
-export function submitCard({ id, question, answer }) {
+export function submitCard({ card, title }) {
+  console.log(card);
   return AsyncStorage.mergeItem(
     DECKS_STORAGE_KEY,
-    JSON.stringify({ id, question })
+    JSON.stringify({ card, title })
   );
 }
-
-// export function addCardToDeck({ title, card }) {
-//   getDecks()
-//     .then((decks) => {
-//       return {
-//         ...decks,
-//         [title]: {
-//           questions: [...decks.questions].concat(card)
-//         }
-//       }
-//     }).then(res => {
-//       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(res))
-//     }).catch(err => {
-//       console.log('error in addCardToDeck', err)
-//     })
-// }
 
 // export function removeEntry(key) {
 //   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then((results) => {
