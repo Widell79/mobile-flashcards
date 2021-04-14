@@ -22,6 +22,8 @@ export default function AddCard({ route, navigation }) {
 
     setQuestion("");
     setAnswer("");
+
+    navigation.navigate("Deck");
   };
 
   return (

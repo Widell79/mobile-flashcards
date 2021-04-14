@@ -1,9 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import setInitialDecks, { DECKS_STORAGE_KEY } from "./_decks";
 
+// Async Storage can only store string data, so in order to store object data you need to serialize it first.
+// For data that can be serialized to JSON you can use JSON.stringify() when saving the data and JSON.parse() when loading the data.
+
 export async function fetchDecksData() {
   try {
-    if (AsyncStorage.getItem(DECKS_STORAGE_KEY) !== null) {
+    const jsonValue = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+    if (jsonValue !== null) {
       return await AsyncStorage.getItem(DECKS_STORAGE_KEY).then((decks) => ({
         decks,
       }));
@@ -17,10 +21,10 @@ export async function fetchDecksData() {
 
 export async function submitCard(title, card) {
   try {
-    const decks = JSON.parse(await AsyncStorage.getItem(DECKS_STORAGE_KEY));
-    const currDeck = decks[title];
-    currDeck.cards.push(card);
-    const updatedDeck = { [title]: currDeck };
+    const value = JSON.parse(await AsyncStorage.getItem(DECKS_STORAGE_KEY));
+    const currentDeck = value[title];
+    currentDeck.cards.push(card);
+    const updatedDeck = { [title]: currentDeck };
 
     return await AsyncStorage.mergeItem(
       DECKS_STORAGE_KEY,
