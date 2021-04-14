@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function DeckView({ route, navigation }) {
+export default function QuizView({ route, navigation }) {
   const { title, numOfCards } = route.params;
   return (
     <View style={styles.container}>
@@ -18,24 +18,16 @@ export default function DeckView({ route, navigation }) {
       </View>
       <View style={styles.btn}>
         <Button
-          title="Add Card"
-          color="#3f8bc9"
-          onPress={() =>
-            navigation.navigate("AddCard", {
-              title: title,
-            })
-          }
+          title="Correct"
+          color="#60b381"
+          onPress={() => navigation.navigate("Home")}
         />
       </View>
       <View style={styles.btn}>
         <Button
-          title="Start Quiz"
-          color="#3ccfc3"
-          onPress={() =>
-            navigation.navigate("Quiz", {
-              title: title,
-            })
-          }
+          title="Incorrect"
+          color="#e84545"
+          onPress={() => navigation.navigate("Home")}
         />
       </View>
     </View>
@@ -69,6 +61,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     margin: 5,
   },
+
   icon: {
     textAlign: "center",
   },

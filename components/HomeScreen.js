@@ -64,6 +64,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.btn}>
         <Button
           title="Add Deck"
+          color="#3f8bc9"
           onPress={() => navigation.navigate("AddDeck")}
         />
       </View>
