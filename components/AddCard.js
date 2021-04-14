@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Alert } from "react-native";
 
 import { useDispatch } from "react-redux";
 
@@ -18,12 +18,18 @@ export default function AddCard({ route, navigation }) {
   const dispatch = useDispatch();
 
   const submitHandler = () => {
-    dispatch(saveCard(card, title));
+    if (question.length < 1 || answer.length < 1) {
+      Alert.alert("OOPS!", "You must enter text in both fields!", [
+        { text: "Ok" },
+      ]);
+    } else {
+      dispatch(saveCard(card, title));
 
-    setQuestion("");
-    setAnswer("");
+      setQuestion("");
+      setAnswer("");
 
-    navigation.navigate("Deck");
+      navigation.navigate("Deck");
+    }
   };
 
   return (
