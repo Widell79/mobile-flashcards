@@ -5,6 +5,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -60,6 +61,12 @@ export default function HomeScreen({ navigation }) {
           </View>
         )}
       />
+      <View style={styles.btn}>
+        <Button
+          title="Add Deck"
+          onPress={() => navigation.navigate("AddDeck")}
+        />
+      </View>
     </View>
   );
 }
@@ -89,5 +96,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     textAlign: "center",
+  },
+  btn: {
+    paddingHorizontal: 40,
+    margin: 5,
+    paddingBottom: 10,
   },
 });

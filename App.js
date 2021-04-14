@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./components/HomeScreen";
 import DeckView from "./components/DeckView";
 import AddCard from "./components/AddCard";
+import AddDeck from "./components/AddDeck";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ function App() {
           />
           <Stack.Screen name="Deck" component={DeckView} />
           <Stack.Screen name="AddCard" component={AddCard} />
+          <Stack.Screen name="AddDeck" component={AddDeck} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

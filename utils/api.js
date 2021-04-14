@@ -35,6 +35,22 @@ export async function submitCard(title, card) {
   }
 }
 
+export async function submitDeck(title) {
+  try {
+    const value = JSON.parse(await AsyncStorage.getItem(DECKS_STORAGE_KEY));
+    const currentDecks = value.decks;
+    currentDecks.push(title);
+    const updatedDecks = { decks: currentDecks };
+
+    return await AsyncStorage.mergeItem(
+      DECKS_STORAGE_KEY,
+      JSON.stringify(updatedDecks)
+    );
+  } catch (err) {
+    console.warn("error while adding new deck", err);
+  }
+}
+
 // export function removeEntry(key) {
 //   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then((results) => {
 //     const data = JSON.parse(results);

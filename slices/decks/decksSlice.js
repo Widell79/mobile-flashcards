@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { submitCard } from "../../utils/api";
+import { submitCard, submitDeck } from "../../utils/api";
 
 export const decksSlice = createSlice({
   name: "decks",
@@ -28,10 +28,22 @@ export const decksSlice = createSlice({
         },
       };
     },
+    add_deck: (state, action) => {
+      const { title } = action.payload;
+
+      return {
+        ...state,
+        ...state.decks,
+        [title]: {
+          title: title,
+          cards: [],
+        },
+      };
+    },
   },
 });
 
-export const { receive_decks, add_card } = decksSlice.actions;
+export const { receive_decks, add_card, add_deck } = decksSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -46,6 +58,18 @@ export function saveCard(card, title) {
     } catch (err) {
       console.warn("Error in saveCard: ", err);
       alert("There was an error saving your card. Please try again.");
+    }
+  };
+}
+
+export function saveDeck(title) {
+  return async (dispatch) => {
+    try {
+      //await submitDeck(title);
+      dispatch(add_deck({ title }));
+    } catch (err) {
+      console.warn("Error in saveDeck: ", err);
+      alert("There was an error saving your deck. Please try again.");
     }
   };
 }
