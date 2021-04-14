@@ -9,6 +9,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { handleInitialData } from "../slices/shared/shared";
 import { selectDecks } from "../slices/decks/decksSlice";
 import setInitialDecks from "../utils/_decks";
@@ -48,6 +50,12 @@ export default function HomeScreen({ navigation }) {
             >
               <Text style={styles.header}>{item.title}</Text>
               <Text style={styles.text}>{item.cards.length} Cards</Text>
+              <MaterialCommunityIcons
+                style={styles.icon}
+                name="cards-outline"
+                size={24}
+                color="black"
+              />
             </TouchableOpacity>
           </View>
         )}
@@ -76,6 +84,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+    textAlign: "center",
+    paddingBottom: 5,
+  },
+  icon: {
     textAlign: "center",
   },
 });
