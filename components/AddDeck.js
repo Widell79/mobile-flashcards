@@ -20,7 +20,10 @@ export default function AddDeck({ navigation }) {
 
       setDeckName("");
 
-      navigation.navigate("Home");
+      navigation.navigate("Deck", {
+        title: deckName,
+        numOfCards: 0,
+      });
     }
   };
 
