@@ -65,7 +65,7 @@ export function saveCard(card, title) {
 export function saveDeck(title) {
   return async (dispatch) => {
     try {
-      //await submitDeck(title);
+      await submitDeck(title);
       dispatch(add_deck({ title }));
     } catch (err) {
       console.warn("Error in saveDeck: ", err);

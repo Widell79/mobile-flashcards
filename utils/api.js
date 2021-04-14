@@ -37,10 +37,7 @@ export async function submitCard(title, card) {
 
 export async function submitDeck(title) {
   try {
-    const value = JSON.parse(await AsyncStorage.getItem(DECKS_STORAGE_KEY));
-    const currentDecks = value.decks;
-    currentDecks.push(title);
-    const updatedDecks = { decks: currentDecks };
+    const updatedDecks = { [title]: { title: title, cards: [] } };
 
     return await AsyncStorage.mergeItem(
       DECKS_STORAGE_KEY,
