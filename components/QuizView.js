@@ -11,16 +11,21 @@ export default function QuizView({ route, navigation }) {
 
   const [cardList, setCardsList] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [currentCard, setCurrentCard] = useState(0);
 
   const decksInfo = useSelector(selectDecks);
+  const numCards = decksInfo[title].cards.length;
 
   useEffect(() => {
-    setCardsList(decksInfo[title].cards[0]);
+    setCardsList(decksInfo[title].cards[currentCard]);
   }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.item}>
+        <Text style={styles.text}>{`Question ${
+          currentCard + 1
+        }/${numCards}`}</Text>
         {showAnswer ? (
           <Text style={styles.header}>{cardList.answer}</Text>
         ) : (
