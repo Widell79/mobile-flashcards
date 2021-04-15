@@ -10,20 +10,33 @@ export default function QuizView({ route, navigation }) {
   const { title, numOfCards } = route.params;
 
   const [cardList, setCardsList] = useState([]);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const decksInfo = useSelector(selectDecks);
 
   useEffect(() => {
-    setCardsList(decksInfo[title].cards[0].question);
+    setCardsList(decksInfo[title].cards[0]);
   }, []);
-
-  //console.log(decksInfo[title].cards);
-  console.log(cardList);
 
   return (
     <View style={styles.container}>
       <View style={styles.item}>
-        <Text style={styles.header}>{cardList}</Text>
+        {showAnswer ? (
+          <Text style={styles.header}>{cardList.answer}</Text>
+        ) : (
+          <Text style={styles.header}>{cardList.question}</Text>
+        )}
+      </View>
+      <View>
+        {showAnswer ? (
+          <Text style={styles.show} onPress={() => setShowAnswer(!showAnswer)}>
+            Show Question
+          </Text>
+        ) : (
+          <Text style={styles.show} onPress={() => setShowAnswer(!showAnswer)}>
+            Show Answer
+          </Text>
+        )}
       </View>
       <View style={styles.btn}>
         <Button
@@ -73,5 +86,11 @@ const styles = StyleSheet.create({
 
   icon: {
     textAlign: "center",
+  },
+  show: {
+    fontSize: 24,
+    textAlign: "center",
+    color: "red",
+    paddingBottom: 20,
   },
 });
