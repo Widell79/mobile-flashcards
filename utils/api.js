@@ -19,16 +19,27 @@ export async function fetchDecksData() {
   }
 }
 
+export async function getDeck(title) {
+  try {
+    const data = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+
+    return JSON.parse(data)[title];
+  } catch (err) {
+    console.log("error while fetching deck", err);
+  }
+}
+
 export async function submitCard(title, card) {
   try {
-    const value = JSON.parse(await AsyncStorage.getItem(DECKS_STORAGE_KEY));
-    const currentDeck = value[title];
-    currentDeck.cards.push(card);
-    const updatedDeck = { [title]: currentDeck };
+    const deck = await getDeck(title);
 
     return await AsyncStorage.mergeItem(
       DECKS_STORAGE_KEY,
-      JSON.stringify(updatedDeck)
+      JSON.stringify({
+        [title]: {
+          cards: [...deck.cards].concat(card),
+        },
+      })
     );
   } catch (err) {
     console.warn("error while adding card", err);
@@ -47,12 +58,3 @@ export async function submitDeck(title) {
     console.warn("error while adding new deck", err);
   }
 }
-
-// export function removeEntry(key) {
-//   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then((results) => {
-//     const data = JSON.parse(results);
-//     data[key] = undefined;
-//     delete data[key];
-//     AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data));
-//   });
-// }
