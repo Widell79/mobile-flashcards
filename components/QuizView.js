@@ -12,13 +12,44 @@ export default function QuizView({ route, navigation }) {
   const [cardList, setCardsList] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
   const [currentCard, setCurrentCard] = useState(0);
+  const [score, setScore] = useState(0);
 
   const decksInfo = useSelector(selectDecks);
   const numCards = decksInfo[title].cards.length;
 
   useEffect(() => {
     setCardsList(decksInfo[title].cards[currentCard]);
-  }, []);
+  });
+
+  const checkAnswer = (answer) => {
+    console.log(answer);
+    console.log(cardList.answer);
+
+    if (answer === "Correct") {
+      const answers = ["correct", "yes", "true"];
+      if (answers.includes(cardList.answer.toLowerCase())) {
+        setScore((prevScore) => {
+          return (prevScore += 1);
+        });
+      }
+    } else if (answer === "Incorrect") {
+      const answers = ["incorrect", "no", "false"];
+      if (answers.includes(cardList.answer.toLowerCase())) {
+        setScore((prevScore) => {
+          return (prevScore += 1);
+        });
+      }
+    }
+    if (currentCard <= numCards) {
+      setCurrentCard((prevCard) => {
+        return (prevCard += 1);
+      });
+    } else {
+      //Todo: Add new comp that shows score etc
+    }
+  };
+
+  console.log(score);
 
   return (
     <View style={styles.container}>
@@ -47,14 +78,14 @@ export default function QuizView({ route, navigation }) {
         <Button
           title="Correct"
           color="#60b381"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => checkAnswer("Correct")}
         />
       </View>
       <View style={styles.btn}>
         <Button
           title="Incorrect"
           color="#e84545"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => checkAnswer("Incorrect")}
         />
       </View>
     </View>
