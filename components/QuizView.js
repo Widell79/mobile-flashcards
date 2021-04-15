@@ -22,34 +22,22 @@ export default function QuizView({ route, navigation }) {
   });
 
   const checkAnswer = (answer) => {
-    console.log(answer);
-    console.log(cardList.answer);
-
     if (answer === "Correct") {
-      const answers = ["correct", "yes", "true"];
-      if (answers.includes(cardList.answer.toLowerCase())) {
-        setScore((prevScore) => {
-          return (prevScore += 1);
-        });
-      }
-    } else if (answer === "Incorrect") {
-      const answers = ["incorrect", "no", "false"];
-      if (answers.includes(cardList.answer.toLowerCase())) {
-        setScore((prevScore) => {
-          return (prevScore += 1);
-        });
-      }
-    }
-    if (currentCard <= numCards) {
-      setCurrentCard((prevCard) => {
-        return (prevCard += 1);
+      setScore((prevScore) => {
+        return (prevScore += 1);
       });
-    } else {
-      //Todo: Add new comp that shows score etc
+    }
+    setCurrentCard((prevCard) => {
+      return (prevCard += 1);
+    });
+
+    if (currentCard + 1 === numCards) {
+      navigation.navigate("Home", {
+        title: title,
+      });
+      //Todo: Add new comp to show score etc
     }
   };
-
-  console.log(score);
 
   return (
     <View style={styles.container}>
