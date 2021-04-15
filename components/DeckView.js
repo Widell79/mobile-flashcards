@@ -29,6 +29,7 @@ export default function DeckView({ route, navigation }) {
       </View>
       <View style={styles.btn}>
         <Button
+          disabled={numOfCards < 1}
           title="Start Quiz"
           color="#3ccfc3"
           onPress={() =>
