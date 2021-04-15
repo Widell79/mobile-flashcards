@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { useSelector } from "react-redux";
 
-import { getDeck } from "../utils/api";
+import { selectDecks } from "../slices/decks/decksSlice";
+
 import { mapDecksToList } from "../utils/helpers";
 
 export default function QuizView({ route, navigation }) {
   const { title, numOfCards } = route.params;
 
-  const deckData = getDeck(title).then((data) => {
-    console.log(data.cards);
-  });
+  const [cardList, setCardsList] = useState([]);
+
+  const decksInfo = useSelector(selectDecks);
+
+  useEffect(() => {
+    setCardsList(decksInfo[title].cards[0].question);
+  }, []);
+
+  //console.log(decksInfo[title].cards);
+  console.log(cardList);
 
   return (
     <View style={styles.container}>
       <View style={styles.item}>
-        <Text style={styles.header}>{JSON.stringify(title)}</Text>
-        <Text style={styles.text}>{JSON.stringify(numOfCards)} Cards</Text>
+        <Text style={styles.header}>{cardList}</Text>
       </View>
       <View style={styles.btn}>
         <Button

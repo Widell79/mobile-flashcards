@@ -7,8 +7,8 @@ export default function DeckView({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.item}>
-        <Text style={styles.header}>{JSON.stringify(title)}</Text>
-        <Text style={styles.text}>{JSON.stringify(numOfCards)} Cards</Text>
+        <Text style={styles.header}>{title}</Text>
+        <Text style={styles.text}>{numOfCards} Cards</Text>
         <MaterialCommunityIcons
           style={styles.icon}
           name="cards-outline"
