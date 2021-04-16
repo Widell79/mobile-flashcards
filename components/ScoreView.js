@@ -15,16 +15,16 @@ export default function ScoreView({ route, navigation }) {
       <View></View>
       <View style={styles.btn}>
         <Button
-          title="Correct"
-          color="#60b381"
-          onPress={() => checkAnswer("Correct")}
+          title="Restart Quiz"
+          color="#3ccfc3"
+          onPress={() => navigation.navigate("Quiz")}
         />
       </View>
       <View style={styles.btn}>
         <Button
-          title="Incorrect"
-          color="#e84545"
-          onPress={() => checkAnswer("Incorrect")}
+          title="Back to Deck"
+          color="#3f8bc9"
+          onPress={() => navigation.navigate("Deck")}
         />
       </View>
     </View>
