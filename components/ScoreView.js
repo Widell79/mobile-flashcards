@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { useSelector } from "react-redux";
 
 export default function ScoreView({ route, navigation }) {
   const { score, numOfCards } = route.params;
 
+  //Ugly hack, taka a look later!
+  let newScore = score;
+  if (newScore != 0) {
+    newScore += 1;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.item}>
         <Text
           style={styles.text}
-        >{`You scored ${score} of ${numOfCards}!`}</Text>
+        >{`You scored ${newScore} of ${numOfCards}!`}</Text>
       </View>
       <View></View>
       <View style={styles.btn}>
