@@ -13,31 +13,40 @@ export default function QuizView({ route, navigation }) {
   const [score, setScore] = useState(0);
 
   const decksInfo = useSelector(selectDecks);
-  console.log(score);
 
   useEffect(() => {
     setCardsList(decksInfo[title].cards[currentCard]);
   });
 
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   const checkAnswer = async (answer) => {
-    if (answer === "Correct") {
-      setScore((prevScore) => {
-        return (prevScore += 1);
+    if (currentCard === numOfCards - 1 && answer === "Correct") {
+      sleep(1000).then(() => {
+        navigation.navigate("Score", {
+          title: title,
+          numOfCards: numOfCards,
+          score: score + 1,
+        });
       });
-    }
-    if (currentCard === numOfCards - 1) {
-      setTimeout(
-        () =>
-          navigation.navigate("Score", {
-            title: title,
-            score: score,
-            numOfCards: numOfCards,
-          }),
-        1000
-      );
+    } else if (currentCard === numOfCards - 1 && answer === "Incorrect") {
+      sleep(1000).then(() => {
+        navigation.navigate("Score", {
+          title: title,
+          numOfCards: numOfCards,
+          score: score,
+        });
+      });
     } else {
+      if (answer === "Correct") {
+        setScore((prevScore) => {
+          return prevScore + 1;
+        });
+      }
       setCurrentCard((prevCard) => {
-        return (prevCard += 1);
+        return prevCard + 1;
       });
     }
   };
