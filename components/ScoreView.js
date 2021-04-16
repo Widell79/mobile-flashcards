@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { useSelector } from "react-redux";
 
 export default function ScoreView({ route, navigation }) {
-  const { score, numOfCards } = route.params;
+  const { title, score, numOfCards } = route.params;
 
   //Ugly hack, taka a look later!
   let newScore = score;
@@ -23,7 +22,12 @@ export default function ScoreView({ route, navigation }) {
         <Button
           title="Restart Quiz"
           color="#3ccfc3"
-          onPress={() => navigation.navigate("Quiz")}
+          onPress={() =>
+            navigation.push("Quiz", {
+              title: title,
+              numOfCards: numOfCards,
+            })
+          }
         />
       </View>
       <View style={styles.btn}>

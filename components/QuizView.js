@@ -14,8 +14,6 @@ export default function QuizView({ route, navigation }) {
 
   const decksInfo = useSelector(selectDecks);
 
-  console.log(score);
-
   useEffect(() => {
     setCardsList(decksInfo[title].cards[currentCard]);
   });
@@ -23,6 +21,7 @@ export default function QuizView({ route, navigation }) {
   const checkAnswer = (answer) => {
     if (currentCard + 1 === numOfCards) {
       navigation.navigate("Score", {
+        title: title,
         score: score,
         numOfCards: numOfCards,
       });
