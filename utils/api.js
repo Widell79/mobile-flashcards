@@ -58,3 +58,21 @@ export async function submitDeck(title) {
     console.warn("error while adding new deck", err);
   }
 }
+
+export async function removeDeck(title) {
+  try {
+    const jsonValue = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+    const decksList = JSON.parse(jsonValue);
+
+    decksList[title] = undefined;
+    delete decksList[title];
+    return await AsyncStorage.setItem(
+      DECKS_STORAGE_KEY,
+      JSON.stringify(decksList)
+    ).then((decks) => ({
+      decks,
+    }));
+  } catch (err) {
+    console.warn("error while deleting specified deck", err);
+  }
+}

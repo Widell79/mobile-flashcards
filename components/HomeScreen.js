@@ -45,7 +45,7 @@ export default function HomeScreen({ navigation }) {
               onPress={() => {
                 navigation.navigate("Deck", {
                   title: item.title,
-                  numOfCards: item.cards.length,
+                  numberOfCards: item.cards.length,
                 });
               }}
             >

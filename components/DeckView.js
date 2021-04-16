@@ -1,21 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { selectDecks } from "../slices/decks/decksSlice";
+import { deleteDeck } from "../slices/decks/decksSlice";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function DeckView({ route, navigation }) {
-  const { title } = route.params;
+  const { title, numberOfCards } = route.params;
   const decksInfo = useSelector(selectDecks);
-  const numOfCards = decksInfo[title].cards.length;
+
+  useEffect(() => {
+    loadCards();
+  });
+
+  const loadCards = () => {
+    try {
+      const num = decksInfo[title].cards.length;
+      return num;
+    } catch {
+      console.log("No cards from state");
+    }
+  };
+
+  const numOfCards = loadCards();
+
+  const dispatch = useDispatch();
+
+  const deleteDeckHandler = () => {
+    dispatch(deleteDeck(title));
+    navigation.navigate("Home");
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.item}>
         <Text style={styles.header}>{title}</Text>
-        <Text style={styles.text}>{numOfCards} Cards</Text>
+        {numOfCards ? (
+          <Text style={styles.text}>{numOfCards} Cards</Text>
+        ) : (
+          <Text style={styles.text}>{numberOfCards} Cards</Text>
+        )}
+
         <MaterialCommunityIcons
           style={styles.icon}
           name="cards-outline"
@@ -45,6 +72,13 @@ export default function DeckView({ route, navigation }) {
               numOfCards: numOfCards,
             })
           }
+        />
+      </View>
+      <View style={styles.delbtn}>
+        <Button
+          title="Delete Deck!"
+          color="#e23e3e"
+          onPress={deleteDeckHandler}
         />
       </View>
     </View>
@@ -77,6 +111,11 @@ const styles = StyleSheet.create({
   btn: {
     paddingHorizontal: 40,
     margin: 5,
+  },
+  delbtn: {
+    paddingHorizontal: 40,
+    margin: 5,
+    marginTop: 30,
   },
   icon: {
     textAlign: "center",

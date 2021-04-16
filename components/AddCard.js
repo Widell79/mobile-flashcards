@@ -45,7 +45,7 @@ export default function AddCard({ route, navigation }) {
         style={styles.input}
         onChangeText={(value) => setAnswer(value)}
       />
-      <Button title="Submit" onPress={submitHandler} />
+      <Button title="Add Card" color="#3f8bc9" onPress={submitHandler} />
     </View>
   );
 }

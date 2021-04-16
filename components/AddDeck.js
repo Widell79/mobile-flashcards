@@ -22,7 +22,7 @@ export default function AddDeck({ navigation }) {
 
       navigation.navigate("Deck", {
         title: deckName,
-        numOfCards: 0,
+        numberOfCards: 0,
       });
     }
   };
@@ -35,7 +35,7 @@ export default function AddDeck({ navigation }) {
         onChangeText={(value) => setDeckName(value)}
       />
 
-      <Button title="Submit" onPress={submitHandler} />
+      <Button title="Create Deck" onPress={submitHandler} />
     </View>
   );
 }
