@@ -4,18 +4,12 @@ import { View, Text, StyleSheet, Button } from "react-native";
 export default function ScoreView({ route, navigation }) {
   const { title, score, numOfCards } = route.params;
 
-  //Ugly hack, taka a look later!
-  let newScore = score;
-  if (newScore != 0) {
-    newScore += 1;
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.item}>
         <Text
           style={styles.text}
-        >{`You scored ${newScore} of ${numOfCards}!`}</Text>
+        >{`You scored ${score} of ${numOfCards}!`}</Text>
       </View>
       <View></View>
       <View style={styles.btn}>
