@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 
 import { selectDecks } from "../slices/decks/decksSlice";
 
-import { mapDecksToList } from "../utils/helpers";
-
 export default function QuizView({ route, navigation }) {
   const { title, numOfCards } = route.params;
 
@@ -15,27 +13,28 @@ export default function QuizView({ route, navigation }) {
   const [score, setScore] = useState(0);
 
   const decksInfo = useSelector(selectDecks);
-  const numCards = decksInfo[title].cards.length;
+
+  console.log(numOfCards);
 
   useEffect(() => {
     setCardsList(decksInfo[title].cards[currentCard]);
   });
 
   const checkAnswer = (answer) => {
-    if (answer === "Correct") {
-      setScore((prevScore) => {
-        return (prevScore += 1);
+    if (currentCard + 1 === numOfCards) {
+      navigation.navigate("Score", {
+        score: score,
+        numOfCards: numOfCards,
       });
-    }
-    setCurrentCard((prevCard) => {
-      return (prevCard += 1);
-    });
-
-    if (currentCard + 1 === numCards) {
-      navigation.navigate("Home", {
-        title: title,
+    } else {
+      if (answer === "Correct") {
+        setScore((prevScore) => {
+          return (prevScore += 1);
+        });
+      }
+      setCurrentCard((prevCard) => {
+        return (prevCard += 1);
       });
-      //Todo: Add new comp to show score etc
     }
   };
 
@@ -44,7 +43,7 @@ export default function QuizView({ route, navigation }) {
       <View style={styles.item}>
         <Text style={styles.text}>{`Question ${
           currentCard + 1
-        }/${numCards}`}</Text>
+        }/${numOfCards}`}</Text>
         {showAnswer ? (
           <Text style={styles.header}>{cardList.answer}</Text>
         ) : (

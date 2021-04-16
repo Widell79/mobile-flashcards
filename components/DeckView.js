@@ -1,9 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+
+import { useSelector } from "react-redux";
+
+import { selectDecks } from "../slices/decks/decksSlice";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function DeckView({ route, navigation }) {
-  const { title, numOfCards } = route.params;
+  const { title } = route.params;
+  const decksInfo = useSelector(selectDecks);
+  const numOfCards = decksInfo[title].cards.length;
+
   return (
     <View style={styles.container}>
       <View style={styles.item}>
@@ -35,6 +42,7 @@ export default function DeckView({ route, navigation }) {
           onPress={() =>
             navigation.navigate("Quiz", {
               title: title,
+              numOfCards: numOfCards,
             })
           }
         />

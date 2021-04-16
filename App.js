@@ -10,8 +10,8 @@ import HomeScreen from "./components/HomeScreen";
 import DeckView from "./components/DeckView";
 import AddCard from "./components/AddCard";
 import AddDeck from "./components/AddDeck";
-import Quiz from "./components/QuizView";
 import QuizView from "./components/QuizView";
+import ScoreView from "./components/ScoreView";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +37,7 @@ function App() {
           <Stack.Screen name="AddCard" component={AddCard} />
           <Stack.Screen name="AddDeck" component={AddDeck} />
           <Stack.Screen name="Quiz" component={QuizView} />
+          <Stack.Screen name="Score" component={ScoreView} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
