@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { clearLocalNotification, setLocalNotification } from "../utils/api";
 
 export default function ScoreView({ route, navigation }) {
   const { title, score, numOfCards } = route.params;
+
+  useEffect(() => {
+    clearLocalNotification().then(setLocalNotification);
+  }, []);
 
   return (
     <View style={styles.container}>

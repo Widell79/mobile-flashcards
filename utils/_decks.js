@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const DECKS_STORAGE_KEY = "MobileFlashCards:decks";
+export const DECKS_NOTIFICATION_KEY = "MobileFlashCards:notifications";
 
 function setInitialDecks() {
   let decks = {

@@ -1,5 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import setInitialDecks, { DECKS_STORAGE_KEY } from "./_decks";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import setInitialDecks, {
+  DECKS_STORAGE_KEY,
+  DECKS_NOTIFICATION_KEY,
+} from "./_decks";
 
 // Async Storage can only store string data, so in order to store object data you need to serialize it first.
 // For data that can be serialized to JSON you can use JSON.stringify() when saving the data and JSON.parse() when loading the data.
@@ -73,4 +78,54 @@ export async function removeDeck(title) {
   } catch (err) {
     console.warn("error while deleting specified deck", err);
   }
+}
+
+function createNotification() {
+  return {
+    title: "Time to study!",
+    body: "Don't forget to study your flashcards today!",
+
+    android: {
+      sound: true,
+      priority: "high",
+      sticky: false,
+      vibrate: true,
+    },
+  };
+}
+
+export async function clearLocalNotification() {
+  return AsyncStorage.removeItem(DECKS_NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
+}
+
+export async function setLocalNotification() {
+  return AsyncStorage.getItem(DECKS_NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+      if (data === null) {
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          if (status === "granted") {
+            Notifications.cancelAllScheduledNotificationsAsync().then(() => {
+              let tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1);
+              tomorrow.setHours(13);
+              tomorrow.setMinutes(0);
+
+              Notifications.scheduleNotificationAsync({
+                content: createNotification(),
+                trigger: tomorrow,
+              }).then(() => {
+                AsyncStorage.setItem(
+                  DECKS_NOTIFICATION_KEY,
+                  JSON.stringify(true)
+                );
+                console.log("reminder set!");
+              });
+            });
+          }
+        });
+      }
+    });
 }
