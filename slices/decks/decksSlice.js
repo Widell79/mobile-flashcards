@@ -41,11 +41,8 @@ export const decksSlice = createSlice({
       };
     },
     delete_deck: (state, action) => {
-      const { title } = action.payload;
-
       return {
-        ...state,
-        ...state.decks,
+        ...action.payload,
       };
     },
   },
@@ -90,8 +87,9 @@ export function saveDeck(title) {
 export function deleteDeck(title) {
   return async (dispatch) => {
     try {
-      await removeDeck(title);
-      dispatch(delete_deck({ title }));
+      const decksData = await removeDeck(title).then(({ decks }) => {
+        dispatch(delete_deck(JSON.parse(decks)));
+      });
     } catch (err) {
       console.warn("Error in deleteDeck: ", err);
       alert("There was an error deleting your deck. Please try again.");
