@@ -94,12 +94,6 @@ function createNotification() {
   };
 }
 
-export async function clearLocalNotification() {
-  return AsyncStorage.removeItem(DECKS_NOTIFICATION_KEY).then(
-    Notifications.cancelAllScheduledNotificationsAsync
-  );
-}
-
 export async function setLocalNotification() {
   return AsyncStorage.getItem(DECKS_NOTIFICATION_KEY)
     .then(JSON.parse)
@@ -128,4 +122,10 @@ export async function setLocalNotification() {
         });
       }
     });
+}
+
+export async function clearLocalNotification() {
+  return AsyncStorage.removeItem(DECKS_NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
 }
