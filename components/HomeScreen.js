@@ -63,8 +63,8 @@ export default function HomeScreen({ navigation }) {
       />
       <View style={styles.btn}>
         <Button
-          title="Add Deck"
-          color="#3f8bc9"
+          title="Add New Deck"
+          color="#2d6187"
           onPress={() => navigation.navigate("AddDeck")}
         />
       </View>
@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
   },
   item: {
     flex: 1,
     marginTop: 20,
     padding: 30,
-    backgroundColor: "#1ea6f4",
+    backgroundColor: "#ece0ca",
     borderRadius: 5,
   },
   header: {

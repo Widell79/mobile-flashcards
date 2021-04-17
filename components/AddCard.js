@@ -45,7 +45,7 @@ export default function AddCard({ route, navigation }) {
         style={styles.input}
         onChangeText={(value) => setAnswer(value)}
       />
-      <Button title="Add Card" color="#3f8bc9" onPress={submitHandler} />
+      <Button title="Add Card" color="#2d6187" onPress={submitHandler} />
     </View>
   );
 }
@@ -53,7 +53,7 @@ export default function AddCard({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
     alignItems: "center",
     justifyContent: "center",
   },

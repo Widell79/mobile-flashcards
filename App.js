@@ -23,7 +23,7 @@ function App() {
           initialRouteName="Home"
           screenOptions={{
             headerStyle: {
-              backgroundColor: "#1ea6f4",
+              backgroundColor: "#28abb9",
             },
             headerTintColor: "#fff",
           }}
@@ -33,7 +33,11 @@ function App() {
             component={HomeScreen}
             options={{ title: "All Decks" }}
           />
-          <Stack.Screen name="Deck" component={DeckView} />
+          <Stack.Screen
+            name="Deck"
+            component={DeckView}
+            options={{ title: "Deck View" }}
+          />
           <Stack.Screen name="AddCard" component={AddCard} />
           <Stack.Screen name="AddDeck" component={AddDeck} />
           <Stack.Screen name="Quiz" component={QuizView} />

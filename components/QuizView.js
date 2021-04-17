@@ -77,14 +77,14 @@ export default function QuizView({ route, navigation }) {
       <View style={styles.btn}>
         <Button
           title="Correct"
-          color="#60b381"
+          color="#9ad3bc"
           onPress={() => checkAnswer("Correct")}
         />
       </View>
       <View style={styles.btn}>
         <Button
           title="Incorrect"
-          color="#e84545"
+          color="#f05454"
           onPress={() => checkAnswer("Incorrect")}
         />
       </View>
@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
   },
   item: {
     marginTop: 20,
     marginBottom: 20,
     padding: 30,
-    backgroundColor: "#1ea6f4",
+    backgroundColor: "#ece0ca",
     borderRadius: 5,
   },
   header: {
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   btn: {
     paddingHorizontal: 40,
     margin: 5,
+    marginBottom: 10,
   },
 
   icon: {
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   show: {
     fontSize: 24,
     textAlign: "center",
-    color: "red",
+    color: "#f05454",
     paddingBottom: 20,
   },
 });

@@ -20,7 +20,7 @@ export default function ScoreView({ route, navigation }) {
       <View style={styles.btn}>
         <Button
           title="Restart Quiz"
-          color="#3ccfc3"
+          color="#28abb9"
           onPress={() =>
             navigation.push("Quiz", {
               title: title,
@@ -32,7 +32,7 @@ export default function ScoreView({ route, navigation }) {
       <View style={styles.btn}>
         <Button
           title="Back to Deck"
-          color="#3f8bc9"
+          color="#2d6187"
           onPress={() => navigation.navigate("Deck")}
         />
       </View>
@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
   },
   item: {
     marginTop: 20,
     marginBottom: 20,
     padding: 30,
-    backgroundColor: "#1ea6f4",
+    backgroundColor: "#ece0ca",
     borderRadius: 5,
   },
   header: {
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   btn: {
     paddingHorizontal: 40,
     margin: 5,
+    marginBottom: 10,
   },
 
   icon: {

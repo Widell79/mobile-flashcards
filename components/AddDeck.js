@@ -35,7 +35,7 @@ export default function AddDeck({ navigation }) {
         onChangeText={(value) => setDeckName(value)}
       />
 
-      <Button title="Create Deck" onPress={submitHandler} />
+      <Button title="Create Deck" color="#2d6187" onPress={submitHandler} />
     </View>
   );
 }
@@ -43,7 +43,7 @@ export default function AddDeck({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
     alignItems: "center",
     justifyContent: "center",
   },

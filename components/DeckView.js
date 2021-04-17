@@ -53,7 +53,7 @@ export default function DeckView({ route, navigation }) {
       <View style={styles.btn}>
         <Button
           title="Add Card"
-          color="#3f8bc9"
+          color="#2d6187"
           onPress={() =>
             navigation.navigate("AddCard", {
               title: title,
@@ -65,7 +65,7 @@ export default function DeckView({ route, navigation }) {
         <Button
           disabled={numOfCards < 1}
           title="Start Quiz"
-          color="#3ccfc3"
+          color="#28abb9"
           onPress={() =>
             navigation.navigate("Quiz", {
               title: title,
@@ -77,7 +77,7 @@ export default function DeckView({ route, navigation }) {
       <View style={styles.delbtn}>
         <Button
           title="Delete Deck!"
-          color="#e23e3e"
+          color="#f05454"
           onPress={deleteDeckHandler}
         />
       </View>
@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f1f1",
   },
   item: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 50,
     padding: 30,
-    backgroundColor: "#1ea6f4",
+    backgroundColor: "#ece0ca",
     borderRadius: 5,
   },
   header: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   delbtn: {
     paddingHorizontal: 40,
     margin: 5,
-    marginTop: 30,
+    marginTop: 50,
   },
   icon: {
     textAlign: "center",

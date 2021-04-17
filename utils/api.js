@@ -96,19 +96,15 @@ export async function setLocalNotification() {
                 shouldSetBadge: false,
               }),
             });
-            // let tomorrow = new Date();
-            // tomorrow.setDate(tomorrow.getDate() + 1);
-            // tomorrow.setHours(12);
-            // tomorrow.setMinutes(0);
 
             Notifications.scheduleNotificationAsync({
               content: {
                 title: "Time to study your flashcards!",
                 body: "See if you can do better then yesterday!",
               },
-              // trigger: tomorrow,
+              // repeats once per 24h
               trigger: {
-                seconds: 60 * 2,
+                seconds: 60 * 1440,
                 repeats: true,
               },
             });
