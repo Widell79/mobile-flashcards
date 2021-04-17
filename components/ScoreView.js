@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { clearLocalNotification, setLocalNotification } from "../utils/api";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 export default function ScoreView({ route, navigation }) {
   const { title, score, numOfCards } = route.params;
@@ -9,12 +10,35 @@ export default function ScoreView({ route, navigation }) {
     clearLocalNotification().then(setLocalNotification);
   }, []);
 
+  const generateIcon = () => {
+    if (score === numOfCards) {
+      return (
+        <FontAwesome
+          style={styles.icon}
+          name="star"
+          size={26}
+          color="#ffb037"
+        />
+      );
+    } else {
+      return (
+        <FontAwesome5
+          style={styles.icon}
+          name="sad-cry"
+          size={26}
+          color="black"
+        />
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.item}>
         <Text
           style={styles.text}
         >{`You scored ${score} of ${numOfCards}!`}</Text>
+        {generateIcon()}
       </View>
       <View></View>
       <View style={styles.btn}>
