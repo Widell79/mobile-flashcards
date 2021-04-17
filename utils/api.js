@@ -80,20 +80,6 @@ export async function removeDeck(title) {
   }
 }
 
-function createNotification() {
-  return {
-    title: "Time to study!",
-    body: "Don't forget to study your flashcards today!",
-
-    android: {
-      sound: true,
-      priority: "high",
-      sticky: false,
-      vibrate: true,
-    },
-  };
-}
-
 export async function setLocalNotification() {
   return AsyncStorage.getItem(DECKS_NOTIFICATION_KEY)
     .then(JSON.parse)
@@ -101,23 +87,34 @@ export async function setLocalNotification() {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === "granted") {
-            Notifications.cancelAllScheduledNotificationsAsync().then(() => {
-              let tomorrow = new Date();
-              tomorrow.setDate(tomorrow.getDate() + 1);
-              tomorrow.setHours(13);
-              tomorrow.setMinutes(0);
+            Notifications.cancelAllScheduledNotificationsAsync();
 
-              Notifications.scheduleNotificationAsync({
-                content: createNotification(),
-                trigger: tomorrow,
-              }).then(() => {
-                AsyncStorage.setItem(
-                  DECKS_NOTIFICATION_KEY,
-                  JSON.stringify(true)
-                );
-                console.log("reminder set!");
-              });
+            Notifications.setNotificationHandler({
+              handleNotification: async () => ({
+                shouldShowAlert: true,
+                shouldPlaySound: true,
+                shouldSetBadge: false,
+              }),
             });
+            // let tomorrow = new Date();
+            // tomorrow.setDate(tomorrow.getDate() + 1);
+            // tomorrow.setHours(12);
+            // tomorrow.setMinutes(0);
+
+            Notifications.scheduleNotificationAsync({
+              content: {
+                title: "Time to study your flashcards!",
+                body: "See if you can do better then yesterday!",
+              },
+              // trigger: tomorrow,
+              trigger: {
+                seconds: 60 * 2,
+                repeats: true,
+              },
+            });
+
+            AsyncStorage.setItem(DECKS_NOTIFICATION_KEY, JSON.stringify(true));
+            console.log("New reminder set!");
           }
         });
       }
