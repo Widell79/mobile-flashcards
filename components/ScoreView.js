@@ -20,7 +20,7 @@ export default function ScoreView({ route, navigation }) {
           color="#ffb037"
         />
       );
-    } else {
+    } else if (score === 0) {
       return (
         <FontAwesome5
           style={styles.icon}
@@ -29,6 +29,8 @@ export default function ScoreView({ route, navigation }) {
           color="black"
         />
       );
+    } else {
+      return;
     }
   };
 
